@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using PackagingAndDelivery_Microservice.Logger;
+using PackagingAndDelivery_Microservice.Models;
 
 namespace PackagingAndDelivery_Microservice
 {
@@ -30,6 +31,9 @@ namespace PackagingAndDelivery_Microservice
 
             //Log Filter
             services.AddControllersWithViews(p => p.Filters.Add(new LogFilterAttribute()));
+
+            //Service to get the packaging and delivery cost from appsettings.json
+            services.Configure<PackagingAndDeliveryCost>(Configuration.GetSection("PackagingAndDeliveryCost"));
 
         }
 
